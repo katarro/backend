@@ -1,30 +1,27 @@
-const { Router } =  require("express")
-const router = Router()
-
+const { Router } = require("express");
+const pool = require("../db");
+const router = Router();
+const {
+  getAllFiles,
+  getOneFile,
+  updateFile,
+  createFile,
+  deleteFile,
+} = require("../controllers/files.controller");
 
 // GET ALL
-router.get('/files',(req,res)=>{
-    res.send("Obteniendo todos los archivo...")
-})
+router.get("/files", getAllFiles);
 
 // GET ONE
-router.get('/files:id',(req,res)=>{
-    res.send("Obteniendo un archivo...")
-})
+router.get("/files/:id", getOneFile);
 
 // POST: AGREGAR
-router.post('/files',(req,res)=>{
-    res.send("Agregando un archivo...")
-})
+router.post("/files", createFile);
 
 // PUT: ACTUALIZAR
-router.put('/files',(req,res)=>{
-    res.send("Actualizando un archivo...")
-})
+router.put("/files/:id", updateFile);
 
 // DELETE: BORRAR
-router.delete('/files',(req,res)=>{
-    res.send("Borrando un archivo...")
-})
+router.delete("/files/:id", deleteFile);
 
-module.exports = router
+module.exports = router;
